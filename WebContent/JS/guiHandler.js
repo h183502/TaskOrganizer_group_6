@@ -1,4 +1,4 @@
-export default class GuiHandler {
+class GuiHandler {
    statuses;
 
    constructor(){
@@ -18,6 +18,7 @@ export default class GuiHandler {
    showTask(task) {
       if(!document.getElementById(task.id)){
          let trHTML = document.createElement("tr")
+         trHTML.id = task.id
          let tdTitle = document.createElement("td")
          let tdStatus = document.createElement("td")
          let tdModify = document.createElement("td")
