@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="CSS/css.css">
     <meta charset="UTF-8">
     <title>Frontpage</title>
 </head>
 <body>
 <script defer src="JS/script.js"></script>
+<script defer src="JS/TaskBox.js"></script>
 <div id="message">
     <p>Waiting for server data.</p>
 </div>
 <div id="newtask">
-    <button type="button" disabled>New task</button>
+    <button type="button" id="myBtn">New task</button>
+    <div id="myModal" class="modal">
+    	<div class="modal-content">
+    		<span class="close">&times;</span>
+    		<p>test</p>
+    	</div>
+    </div>
 </div>
 <div id="tasks">
 
