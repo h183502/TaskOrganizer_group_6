@@ -33,13 +33,12 @@ class GuiHandler {
             tdTitle.innerText = task.title;
             tdStatus.innerText = task.status;
             let selectHTML = document.createElement("select");
-            selectHTML.options.add(new Option("&lt;Modify&gt;", "0", true));
+            selectHTML.options.add(new Option("<Modify>", "0", true));
             this.statuses.forEach(status => selectHTML.options.add(new Option(status, status)));
             tdModify.appendChild(selectHTML);
             let buttonHTML = document.createElement("button");
             buttonHTML.innerText = "Remove";
             buttonHTML.type = "button";
-            buttonHTML.
             tdRemove.appendChild(buttonHTML);
             tdArr.forEach(td => trHTML.appendChild(td));
             this.table.appendChild(trHTML);
