@@ -22,3 +22,5 @@ class TaskBox {
 		}
 	}
 }
+
+const taskBox = new TaskBox();
