@@ -1,6 +1,7 @@
 "use strict";
 
-class TaskBox {
+class taskBox {
+	statuses
 	
 	constructor() {
 		let modal = document.getElementById("myModal");
@@ -20,7 +21,28 @@ class TaskBox {
 				modal.style.display = "none";
 			}
 		}
+		
+	}
+	setallstatuses(s){
+		this.statuses = s
+	}
+	allStatuses(){
+		
+	}
+	onSubmit(){
+		
 	}
 }
 
-const taskBox = new TaskBox();
+const tasksmodalboxdiv = document.getElementById("taskbox")
+const tasknewbutton = document.getElementById("newtask").getElementByTagName("button")[0]
+
+tasknewbutton.addEventListener("click", (event) => {taskbox.show()}, true)
+taskBox = new TaskBox(taskmodalboxdiv)
+taskBox.onSubmit = (task) => {
+	console.log(`new task '${task.title}' with initial status ${task.status} is added to user.`)
+	taskBox.close()
+}
+
+document.getElementById("newtask").getElementByTagName("button")[0].disabled=false
+
