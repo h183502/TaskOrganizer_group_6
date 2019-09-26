@@ -29,7 +29,10 @@ class taskBox {
 	allStatuses(){
 		
 	}
-	onSubmit(){
+	onSubmit(newtask){
+		
+	}
+	close(){
 		
 	}
 }
