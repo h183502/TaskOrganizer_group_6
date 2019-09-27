@@ -1,7 +1,7 @@
 "use strict";
 
 class taskBox {
-	statuses
+	statuses;
 	
 	constructor() {
 		let modal = document.getElementById("myModal");
@@ -17,7 +17,7 @@ class taskBox {
 		}
 		
 		window.onClick = function(event){
-			if(event.target == modal){
+			if(event.target === modal){
 				modal.style.display = "none";
 			}
 		}
@@ -37,15 +37,15 @@ class taskBox {
 	}
 }
 
-const tasksmodalboxdiv = document.getElementById("taskbox")
-const tasknewbutton = document.getElementById("newtask").getElementByTagName("button")[0]
+const tasksmodalboxdiv = document.getElementById("taskbox");
+const tasknewbutton = document.getElementById("newtask");
 
-tasknewbutton.addEventListener("click", (event) => {taskbox.show()}, true)
-taskBox = new TaskBox(taskmodalboxdiv)
+tasknewbutton.addEventListener("click", (event) => {taskbox.show()}, true);
+taskBox = new TaskBox(taskmodalboxdiv);
 taskBox.onSubmit = (task) => {
-	console.log(`new task '${task.title}' with initial status ${task.status} is added to user.`)
-	taskBox.close()
+	console.log(`new task '${task.title}' with initial status ${task.status} is added to user.`);
+	taskBox.close();
 }
 
-document.getElementById("newtask").getElementByTagName("button")[0].disabled=false
+document.getElementById("newtask").getElementByTagName("button")[0].disabled=false;
 

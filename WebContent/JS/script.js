@@ -39,6 +39,12 @@ class GuiHandler {
             let buttonHTML = document.createElement("button");
             buttonHTML.innerText = "Remove";
             buttonHTML.type = "button";
+            buttonHTML.onclick = function() {
+                let result = window.confirm(`Delete task ${task.title}?`);
+                if(result){
+                   gui.removeTask(task.id)
+                }
+            };
             tdRemove.appendChild(buttonHTML);
             tdArr.forEach(td => trHTML.appendChild(td));
             this.table.appendChild(trHTML);
