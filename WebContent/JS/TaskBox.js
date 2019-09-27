@@ -41,7 +41,7 @@ const tasksmodalboxdiv = document.getElementById("taskbox");
 const tasknewbutton = document.getElementById("newtask");
 
 tasknewbutton.addEventListener("click", (event) => {taskbox.show()}, true);
-taskBox = new TaskBox(taskmodalboxdiv);
+taskBox = new taskBox(taskmodalboxdiv);
 taskBox.onSubmit = (task) => {
 	console.log(`new task '${task.title}' with initial status ${task.status} is added to user.`);
 	taskBox.close();
