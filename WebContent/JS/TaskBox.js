@@ -23,12 +23,10 @@ class taskBox {
 		}
 		
 	}
-	setallstatuses(s){
+	set allstatuses(s){
 		this.statuses = s
 	}
-	allStatuses(){
-		
-	}
+
 	onSubmit(newtask){
 		
 	}
