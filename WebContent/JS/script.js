@@ -19,7 +19,9 @@ class GuiHandler {
     set allstatuses(s){
         this.statuses = s
     }
-    set deleteTaskCallback(id){}
+    deleteTaskCallback(){}
+
+    newStatusCallback(){}
 
     showTask(task) {
         if(!document.getElementById(task.id)){
@@ -34,15 +36,28 @@ class GuiHandler {
             tdStatus.innerText = task.status;
             let selectHTML = document.createElement("select");
             selectHTML.options.add(new Option("<Modify>", "0", true));
-            this.statuses.forEach(status => selectHTML.options.add(new Option(status, status)));
+            this.statuses.forEach(status => {
+                let opt = new Option(status, status);
+                if (opt.value === task.status){
+                    opt.disabled = true;
+                }
+                selectHTML.options.add(opt)
+            });
             tdModify.appendChild(selectHTML);
+            selectHTML.addEventListener('change', () => {
+                let result = window.confirm(`Set ${task.title} to ${selectHTML.value}?`);
+                if (result){
+                    this.newStatusCallback(task.id, selectHTML.value)
+                }
+            });
             let buttonHTML = document.createElement("button");
             buttonHTML.innerText = "Remove";
             buttonHTML.type = "button";
             buttonHTML.onclick = function() {
                 let result = window.confirm(`Delete task ${task.title}?`);
                 if(result){
-                   gui.removeTask(task.id)
+                   // gui.removeTask(task.id)
+                    gui.deleteTaskCallback(task.id);
                 }
             };
             tdRemove.appendChild(buttonHTML);
@@ -58,6 +73,10 @@ class GuiHandler {
     update(task){
         let trHTML = document.getElementById(task.id);
         trHTML.getElementsByTagName("td")[1].innerText = task.status
+        let oldDisabledOpt = document.querySelector('option[disabled]');
+        oldDisabledOpt.disabled = false;
+        let optionHTML = document.querySelector(`option[value="${task.status}"]`);
+        optionHTML.disabled = true;
     }
     removeTask(id){
         let trHTML = document.getElementById(id);
@@ -85,3 +104,12 @@ tasks.forEach((task) => {gui.showTask(task)});
 gui.update({"id":1,"status":"ACTIVE"});
 gui.removeTask(2);
 
+gui.deleteTaskCallback = (id) => {
+    console.log(`User has approved the deletion of task with id ${id}.`);
+    gui.removeTask(id)
+}
+
+gui.newStatusCallback = (id,newStatus) => {
+    console.log(`User has approved to change the status of task with id ${id} to ${newStatus}.`)
+    gui.update({"id":id,"status":newStatus})
+}
