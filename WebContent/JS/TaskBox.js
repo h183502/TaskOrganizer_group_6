@@ -3,8 +3,8 @@
 class taskBox {
 	statuses
 	
-	constructor() {
-		let modal = document.getElementById("myModal");
+	constructor(modaldiv) {
+		let modal = modaldiv
 		let btn = document.getElementById("myBtn");
 		let span = document.getElementClassName("close"[0]);
 		
