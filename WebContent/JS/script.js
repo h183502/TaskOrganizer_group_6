@@ -1,7 +1,6 @@
 "use strict";
 
 class GuiHandler {
-    statuses;
 
     constructor(){
         let taskDiv = document.getElementById("tasks");
@@ -35,6 +34,7 @@ class GuiHandler {
             tdTitle.innerText = task.title;
             tdStatus.innerText = task.status;
             let selectHTML = document.createElement("select");
+            selectHTML.id = "option-" + task.id
             selectHTML.options.add(new Option("<Modify>", "0", true));
             this.statuses.forEach(status => {
                 let opt = new Option(status, status);
@@ -75,12 +75,21 @@ class GuiHandler {
         }
     }
     update(task){
+        // Change status
         let trHTML = document.getElementById(task.id);
         trHTML.getElementsByTagName("td")[1].innerText = task.status
-        let oldDisabledOpt = document.querySelector('option[disabled]');
+
+        let selectElement = document.getElementById("option-" + task.id)
+
+        //Enable old status
+        let oldDisabledOpt = selectElement.querySelector('option[disabled]');
         oldDisabledOpt.disabled = false;
-        let optionHTML = document.querySelector(`option[value="${task.status}"]`);
+
+        //Disable new status
+        let optionHTML = selectElement.querySelector(`option[value="${task.status}"]`);
         optionHTML.disabled = true;
+
+        selectElement.selectedIndex = 0
     }
     removeTask(id){
         let trHTML = document.getElementById(id);
