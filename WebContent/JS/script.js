@@ -63,9 +63,13 @@ class GuiHandler {
             tdRemove.appendChild(buttonHTML);
             tdArr.forEach(td => trHTML.appendChild(td));
             this.table.appendChild(trHTML);
+
+            // Update counting number of tasks
             let messageDiv = document.getElementById("message");
             messageDiv.getElementsByTagName("p")[0].textContent =
-                `Found ${this.table.getElementsByTagName("tr") - 1} tasks`
+                `Found ${this.table.getElementsByTagName("tr").length - 1} tasks`
+
+
         } else {
             console.error("id of task already exists")
         }
@@ -91,6 +95,7 @@ class GuiHandler {
     }
 }
 
+let nextID = 4;
 const gui = new GuiHandler();
 const statuses = ["WAITING","ACTIVE","DONE"];
 const tasks = [

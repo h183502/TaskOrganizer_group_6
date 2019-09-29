@@ -81,10 +81,12 @@ taskBoxInstance.onSubmit = (task) => {
 
 taskBoxInstance.button.addEventListener("click", function (event) {
     let task = {
-        "id": Math.random() * 1000000,
+        "id": nextID,
         "title": taskBoxInstance.titleElem.value,
         "status": taskBoxInstance.statusElem.value
     };
+
+    nextID += 1;
 
     taskBoxInstance.submitTask(task);
 });
