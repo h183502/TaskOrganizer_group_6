@@ -6,16 +6,16 @@ class taskBox {
         this.modal = modaldiv
 
         //Lag en array med attributes title og status og send den inn i submitTask
-        this.button =  $(this.modal).find('button')[0]
-        this.statusElem = $(this.modal).find('select#status')
-        this.titleElem = $(this.modal).find('input#title')
+        this.button =  document.getElementById("addTask")
+        this.statusElem = document.getElementById("status")
+        this.titleElem = document.getElementById("title")
     }
 
     set allStatuses(s) {
         this.statuses = s
         this.statuses.forEach(status => {
             let opt = new Option(status, status);
-            this.statusElem[0].options.add(opt)
+            this.statusElem.options.add(opt)
         });
     }
 
@@ -29,7 +29,7 @@ class taskBox {
 
         //Reset verdier
         this.statuses.selectedIndex = 0
-        this.titleElem[0].value = ""
+        this.titleElem.value = ""
     }
 
     show() {
@@ -82,8 +82,8 @@ taskBoxInstance.onSubmit = (task) => {
 taskBoxInstance.button.addEventListener("click", function (event) {
     let task = {
         "id": Math.random() * 1000000,
-        "title": taskBoxInstance.titleElem.val(),
-        "status": taskBoxInstance.statusElem.val()
+        "title": taskBoxInstance.titleElem.value,
+        "status": taskBoxInstance.statusElem.value
     };
 
     taskBoxInstance.submitTask(task);
